@@ -1,0 +1,590 @@
+[
+  {
+    "query": "How many CT scans are there?",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": null
+  },
+  {
+    "query": "Count the number of MRI brain studies",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": "brain"
+  },
+  {
+    "query": "How many chest X-rays do we have?",
+    "intent": "study_count",
+    "modality": "X-ray",
+    "body_part": "chest"
+  },
+  {
+    "query": "Total ultrasound scans of abdomen",
+    "intent": "study_count",
+    "modality": "ultrasound",
+    "body_part": "abdomen"
+  },
+  {
+    "query": "Give me the count of PET scans",
+    "intent": "study_count",
+    "modality": "PET",
+    "body_part": null
+  },
+  {
+    "query": "How many spine MRI studies?",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": "spine"
+  },
+  {
+    "query": "Number of cardiac CT scans",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": "heart"
+  },
+  {
+    "query": "Count mammography studies",
+    "intent": "study_count",
+    "modality": "mammography",
+    "body_part": "breast"
+  },
+  {
+    "query": "How many pelvis ultrasounds are available?",
+    "intent": "study_count",
+    "modality": "ultrasound",
+    "body_part": "pelvis"
+  },
+  {
+    "query": "Total number of head CT scans",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": "head"
+  },
+  {
+    "query": "What's the count of lung X-rays?",
+    "intent": "study_count",
+    "modality": "X-ray",
+    "body_part": "lung"
+  },
+  {
+    "query": "How many abdominal MRI scans?",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": "abdomen"
+  },
+  {
+    "query": "Count of knee MRI studies",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": "knee"
+  },
+  {
+    "query": "How many shoulder ultrasounds?",
+    "intent": "study_count",
+    "modality": "ultrasound",
+    "body_part": "shoulder"
+  },
+  {
+    "query": "Total liver CT scans",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": "liver"
+  },
+  {
+    "query": "What imaging modalities are available?",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "List all imaging types",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Show me the available scan types",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What kinds of imaging do you have?",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Give me all modalities",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What scan modalities can I search?",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "List imaging modality options",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Show available imaging techniques",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What types of medical imaging are there?",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Display all scan modalities",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Which imaging methods are supported?",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Show me all radiological modalities",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What body parts can be scanned?",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "List all anatomical regions",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Show available body parts",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Which organs can I search for?",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Give me all body part options",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What anatomical areas are covered?",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "List searchable body regions",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Display all organ systems",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What body areas can be imaged?",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Show me all anatomical parts available",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Which body parts have imaging data?",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "List all organs and body regions",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "List all MRI studies",
+    "intent": "list_studies",
+    "modality": "MRI",
+    "body_part": null
+  },
+  {
+    "query": "Show me CT scan studies",
+    "intent": "list_studies",
+    "modality": "CT",
+    "body_part": null
+  },
+  {
+    "query": "Give me all brain imaging studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": "brain"
+  },
+  {
+    "query": "Display chest X-ray study IDs",
+    "intent": "list_studies",
+    "modality": "X-ray",
+    "body_part": "chest"
+  },
+  {
+    "query": "List ultrasound studies",
+    "intent": "list_studies",
+    "modality": "ultrasound",
+    "body_part": null
+  },
+  {
+    "query": "Show all cardiac MRI studies",
+    "intent": "list_studies",
+    "modality": "MRI",
+    "body_part": "heart"
+  },
+  {
+    "query": "Give me spine CT study IDs",
+    "intent": "list_studies",
+    "modality": "CT",
+    "body_part": "spine"
+  },
+  {
+    "query": "List all PET scans",
+    "intent": "list_studies",
+    "modality": "PET",
+    "body_part": null
+  },
+  {
+    "query": "Show abdomen ultrasound studies",
+    "intent": "list_studies",
+    "modality": "ultrasound",
+    "body_part": "abdomen"
+  },
+  {
+    "query": "Display all lung imaging studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": "lung"
+  },
+  {
+    "query": "List mammography study IDs",
+    "intent": "list_studies",
+    "modality": "mammography",
+    "body_part": "breast"
+  },
+  {
+    "query": "Show me all head CT studies",
+    "intent": "list_studies",
+    "modality": "CT",
+    "body_part": "head"
+  },
+  {
+    "query": "Give me pelvis MRI study list",
+    "intent": "list_studies",
+    "modality": "MRI",
+    "body_part": "pelvis"
+  },
+  {
+    "query": "Display knee MRI studies",
+    "intent": "list_studies",
+    "modality": "MRI",
+    "body_part": "knee"
+  },
+  {
+    "query": "List all liver CT scans",
+    "intent": "list_studies",
+    "modality": "CT",
+    "body_part": "liver"
+  },
+  {
+    "query": "Show shoulder ultrasound study IDs",
+    "intent": "list_studies",
+    "modality": "ultrasound",
+    "body_part": "shoulder"
+  },
+  {
+    "query": "Give me all abdominal imaging studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": "abdomen"
+  },
+  {
+    "query": "List cardiac studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": "heart"
+  },
+  {
+    "query": "How many studies total?",
+    "intent": "study_count",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Count all imaging studies",
+    "intent": "study_count",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Number of brain scans",
+    "intent": "study_count",
+    "modality": null,
+    "body_part": "brain"
+  },
+  {
+    "query": "How many chest imaging studies?",
+    "intent": "study_count",
+    "modality": null,
+    "body_part": "chest"
+  },
+  {
+    "query": "Total cardiac imaging count",
+    "intent": "study_count",
+    "modality": null,
+    "body_part": "heart"
+  },
+  {
+    "query": "Give me the number of spine scans",
+    "intent": "study_count",
+    "modality": null,
+    "body_part": "spine"
+  },
+  {
+    "query": "How many lung X-ray studies?",
+    "intent": "study_count",
+    "modality": "X-ray",
+    "body_part": "lung"
+  },
+  {
+    "query": "Count of all CT imaging",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": null
+  },
+  {
+    "query": "Total MRI study count",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": null
+  },
+  {
+    "query": "How many ultrasound scans total?",
+    "intent": "study_count",
+    "modality": "ultrasound",
+    "body_part": null
+  },
+  {
+    "query": "Show all available studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "List every imaging study",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Display complete study list",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Give me all study IDs",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What imaging modalities do you support?",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Tell me the available scan types",
+    "intent": "list_modalities",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "Which body parts are searchable?",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "What organs are in the database?",
+    "intent": "list_body_parts",
+    "modality": null,
+    "body_part": null
+  },
+  {
+    "query": "How many knee MRIs?",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": "knee"
+  },
+  {
+    "query": "Count ankle X-rays",
+    "intent": "study_count",
+    "modality": "X-ray",
+    "body_part": "ankle"
+  },
+  {
+    "query": "Number of wrist CT scans",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": "wrist"
+  },
+  {
+    "query": "Show me neck MRI studies",
+    "intent": "list_studies",
+    "modality": "MRI",
+    "body_part": "neck"
+  },
+  {
+    "query": "List hip ultrasounds",
+    "intent": "list_studies",
+    "modality": "ultrasound",
+    "body_part": "hip"
+  },
+  {
+    "query": "Display elbow imaging studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": "elbow"
+  },
+  {
+    "query": "Total number of hand X-rays",
+    "intent": "study_count",
+    "modality": "X-ray",
+    "body_part": "hand"
+  },
+  {
+    "query": "How many foot scans?",
+    "intent": "study_count",
+    "modality": null,
+    "body_part": "foot"
+  },
+  {
+    "query": "Count thyroid ultrasounds",
+    "intent": "study_count",
+    "modality": "ultrasound",
+    "body_part": "thyroid"
+  },
+  {
+    "query": "List kidney CT studies",
+    "intent": "list_studies",
+    "modality": "CT",
+    "body_part": "kidney"
+  },
+  {
+    "query": "Show pancreas MRI scans",
+    "intent": "list_studies",
+    "modality": "MRI",
+    "body_part": "pancreas"
+  },
+  {
+    "query": "How many gallbladder ultrasounds?",
+    "intent": "study_count",
+    "modality": "ultrasound",
+    "body_part": "gallbladder"
+  },
+  {
+    "query": "Count prostate MRI studies",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": "prostate"
+  },
+  {
+    "query": "List bladder CT scans",
+    "intent": "list_studies",
+    "modality": "CT",
+    "body_part": "bladder"
+  },
+  {
+    "query": "Show ovarian ultrasound studies",
+    "intent": "list_studies",
+    "modality": "ultrasound",
+    "body_part": "ovary"
+  },
+  {
+    "query": "How many uterus MRIs?",
+    "intent": "study_count",
+    "modality": "MRI",
+    "body_part": "uterus"
+  },
+  {
+    "query": "Total sinus CT scans",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": "sinus"
+  },
+  {
+    "query": "List orbital imaging studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": "orbit"
+  },
+  {
+    "query": "Show temporal bone CT studies",
+    "intent": "list_studies",
+    "modality": "CT",
+    "body_part": "temporal bone"
+  },
+  {
+    "query": "How many carotid ultrasounds?",
+    "intent": "study_count",
+    "modality": "ultrasound",
+    "body_part": "carotid"
+  },
+  {
+    "query": "Count aorta CT studies",
+    "intent": "study_count",
+    "modality": "CT",
+    "body_part": "aorta"
+  },
+  {
+    "query": "List venous doppler studies",
+    "intent": "list_studies",
+    "modality": "ultrasound",
+    "body_part": "vein"
+  },
+  {
+    "query": "Show arterial imaging studies",
+    "intent": "list_studies",
+    "modality": null,
+    "body_part": "artery"
+  }
+]
