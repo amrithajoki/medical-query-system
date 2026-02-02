@@ -112,6 +112,15 @@ from mcp.types import Tool, TextContent
 # Project imports
 from ml_model.entity_extractor import EntityExtractor
 
+import logging
+# Configure logging to a file for Render debugging
+logging.basicConfig(
+    filename="mcp_server.log",
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger("mcp-server")
+logger.info("Server script starting...")
 
 class MedicalQueryServer:
     """MCP Server for medical query processing"""
@@ -119,24 +128,34 @@ class MedicalQueryServer:
     def __init__(self):
         self.server = Server("medical-query-server")
         
-        # Load ML model
-        base_dir = Path(__file__).parent.parent
-        model_path = base_dir / 'models' / 'intent_classifier.pkl'
-        
-        if not model_path.exists():
-            raise FileNotFoundError(
-                f"Model not found at {model_path}. "
-                "Please run: python ml_model/trainer.py"
-            )
-        
-        with open(model_path, 'rb') as f:
-            self.model = pickle.load(f)
-        
-        # Initialize entity extractor
-        self.entity_extractor = EntityExtractor()
-        
-        # Setup MCP tools
-        self.setup_tools()
+        try:
+            # Load ML model
+            base_dir = Path(__file__).parent.parent
+            model_path = base_dir / 'models' / 'intent_classifier.pkl'
+            
+            logger.info(f"Looking for model at: {model_path}")
+            if not model_path.exists():
+                logger.error(f"Model file NOT FOUND at {model_path}")
+                raise FileNotFoundError(
+                    f"Model not found at {model_path}. "
+                    "Please run: python ml_model/trainer.py"
+                )
+            
+            with open(model_path, 'rb') as f:
+                self.model = pickle.load(f)
+            logger.info("Model loaded successfully")
+            
+            # Initialize entity extractor
+            self.entity_extractor = EntityExtractor()
+            logger.info("Entity extractor initialized")
+            
+            # Setup MCP tools
+            self.setup_tools()
+            logger.info("Tools registered")
+            
+        except Exception as e:
+            logger.exception("Failed to initialize MedicalQueryServer")
+            raise
     
     def setup_tools(self):
         """Register MCP tools"""

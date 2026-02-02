@@ -1,0 +1,21 @@
+2026-02-02 19:34:58,868 - mcp-server - INFO - Server script starting...
+2026-02-02 19:34:58,868 - asyncio - DEBUG - Using proactor: IocpProactor
+2026-02-02 19:34:58,868 - mcp.server.lowlevel.server - DEBUG - Initializing server 'medical-query-server'
+2026-02-02 19:34:58,873 - mcp-server - INFO - Looking for model at: D:\Medical Query System\models\intent_classifier.pkl
+2026-02-02 19:35:03,753 - mcp-server - INFO - Model loaded successfully
+2026-02-02 19:35:03,753 - mcp-server - INFO - Entity extractor initialized
+2026-02-02 19:35:03,753 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListToolsRequest
+2026-02-02 19:35:03,753 - mcp.server.lowlevel.server - DEBUG - Registering handler for CallToolRequest
+2026-02-02 19:35:03,755 - mcp-server - INFO - Tools registered
+2026-02-02 19:35:03,768 - mcp.server.lowlevel.server - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2026-02-02 19:35:03,768 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001DC50FAC800>
+2026-02-02 19:35:03,768 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2026-02-02 19:35:03,768 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type CallToolRequest
+2026-02-02 19:35:03,768 - mcp.server.lowlevel.server - DEBUG - Tool cache miss for analyze_and_fetch, refreshing cache
+2026-02-02 19:35:03,782 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): eutils.ncbi.nlm.nih.gov:443
+2026-02-02 19:35:05,187 - urllib3.connectionpool - DEBUG - https://eutils.ncbi.nlm.nih.gov:443 "GET /entrez/eutils/esearch.fcgi?db=pubmed&term=medical+imaging&retmode=json&retmax=10 HTTP/1.1" 200 None
+2026-02-02 19:35:05,191 - mcp.server.lowlevel.server - DEBUG - Response sent
+2026-02-02 19:35:05,194 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001DC523CDAF0>
+2026-02-02 19:35:05,194 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-02-02 19:35:05,194 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type ListToolsRequest
+2026-02-02 19:35:05,194 - mcp.server.lowlevel.server - DEBUG - Response sent
