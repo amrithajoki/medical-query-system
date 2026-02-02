@@ -113,9 +113,10 @@ from mcp.types import Tool, TextContent
 from ml_model.entity_extractor import EntityExtractor
 
 import logging
-# Configure logging to a file for Render debugging
+import sys
+# Configure logging to stderr for Render debugging (safe for MCP)
 logging.basicConfig(
-    filename="mcp_server.log",
+    stream=sys.stderr,
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )

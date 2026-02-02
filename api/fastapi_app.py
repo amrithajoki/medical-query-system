@@ -93,19 +93,11 @@ async def check_files():
     """Diagnostic endpoint to check file existence on Render"""
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     model_path = os.path.join(base_dir, "models", "intent_classifier.pkl")
-    log_path = os.path.join(os.getcwd(), "mcp_server.log")
     
-    log_content = ""
-    if os.path.exists(log_path):
-        with open(log_path, "r") as f:
-            log_content = f.read()
-
     return {
         "base_dir": base_dir,
         "model_exists": os.path.exists(model_path),
         "model_path": model_path,
-        "log_path": log_path,
-        "log_content": log_content,
         "cwd": os.getcwd(),
         "files_in_root": os.listdir(base_dir),
         "files_in_models": os.listdir(os.path.join(base_dir, "models")) if os.path.exists(os.path.join(base_dir, "models")) else []
