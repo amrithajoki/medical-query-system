@@ -61,10 +61,14 @@ import sys
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 import os
+from fastapi.responses import RedirectResponse
 
 # Get port from environment (Render provides this)
 PORT = int(os.getenv("PORT", 8000))
 app = FastAPI()
+@app.get("/", include_in_schema=False)
+async def docs_redirect():
+    return RedirectResponse(url='/docs')
 
 class Query(BaseModel):
     text: str
