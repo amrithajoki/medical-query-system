@@ -120,8 +120,10 @@ class MedicalQueryServer:
         self.server = Server("medical-query-server")
         
         # Load ML model
-        model_path = 'models/intent_classifier.pkl'
-        if not os.path.exists(model_path):
+        base_dir = Path(__file__).parent.parent
+        model_path = base_dir / 'models' / 'intent_classifier.pkl'
+        
+        if not model_path.exists():
             raise FileNotFoundError(
                 f"Model not found at {model_path}. "
                 "Please run: python ml_model/trainer.py"

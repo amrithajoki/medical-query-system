@@ -1,88 +1,88 @@
+# from fastapi.responses import RedirectResponse
 # from fastapi import FastAPI
 # from pydantic import BaseModel
-# import joblib
-# import numpy as np
+# import sys
+# from mcp import ClientSession, StdioServerParameters
+# from mcp.client.stdio import stdio_client
 # import os
 
-# # ----------------------------
-# # FastAPI instance (must be named 'app')
-# # ----------------------------
-# app = FastAPI(
-#     title="Medical Query Intent API",
-#     description="Predicts intent from medical text queries",
-#     version="1.0.0"
-# )
 
-# # ----------------------------
-# # Load trained model
-# # ----------------------------
-# MODEL_PATH = os.path.join(os.path.dirname(__file__), "../models/intent_classifier.pkl")
-# model = joblib.load(MODEL_PATH)
+# # Get port from environment (Render provides this)
+# PORT = int(os.getenv("PORT", 8000))
+# app = FastAPI()
 
-# # ----------------------------
-# # Request / Response schemas
-# # ----------------------------
-# class QueryRequest(BaseModel):
-#     query: str
+# @app.get("/", include_in_schema=False)
+# async def docs_redirect():
+#     return RedirectResponse(url='/docs')
 
-# class PredictionResponse(BaseModel):
-#     query: str
-#     intent: str
-#     confidence: float
+# class Query(BaseModel):
+#     text: str
 
-# # ----------------------------
-# # Prediction endpoint
-# # ----------------------------
-# @app.post("/predict", response_model=PredictionResponse)
-# def predict_intent(request: QueryRequest):
-#     query_text = request.query
+# @app.post("/ask")
+# async def ask_orchestrator(query: Query):
+#     server_params = StdioServerParameters(
+#         command=sys.executable,
+#         args=["mcp_server/server.py"]
+#     )
 
-#     # Predict probabilities
-#     probs = model.predict_proba([query_text])[0]
-#     classes = model.classes_
-
-#     # Get best prediction
-#     best_idx = int(np.argmax(probs))
-#     intent = classes[best_idx]
-#     confidence = float(probs[best_idx])
-
-#     return {
-#         "query": query_text,
-#         "intent": intent,
-#         "confidence": round(confidence, 4)
-#     }
-# @app.get("/")
-# def root():
-#     return {"message": "Medical Query Intent API is running. Use /docs to see Swagger UI."}
-
+#     async with stdio_client(server_params) as (read, write):
+#         async with ClientSession(read, write) as session:
+#             await session.initialize()
+#             # Calling the tool we decorated with @mcp.tool()
+#             response = await session.call_tool("analyze_and_fetch", arguments={"query": query.text})
+#             return {"answer": response.content[0].text}
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import sys
+import os
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-import os
-from fastapi.responses import RedirectResponse
 
-# Get port from environment (Render provides this)
-PORT = int(os.getenv("PORT", 8000))
 app = FastAPI()
-@app.get("/", include_in_schema=False)
-async def docs_redirect():
-    return RedirectResponse(url='/docs')
+
+# 1. FIXED PATHING: Calculates absolute path to the server
+# Since this file is in 'api/', we go up one level to the root
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SERVER_SCRIPT = os.path.join(BASE_DIR, "mcp_server", "server.py")
 
 class Query(BaseModel):
     text: str
+
+@app.get("/", include_in_schema=False)
+async def docs_redirect():
+    return RedirectResponse(url='/docs')
 
 @app.post("/ask")
 async def ask_orchestrator(query: Query):
     server_params = StdioServerParameters(
         command=sys.executable,
-        args=["mcp_server/server.py"]
+        args=[SERVER_SCRIPT]
     )
 
-    async with stdio_client(server_params) as (read, write):
-        async with ClientSession(read, write) as session:
-            await session.initialize()
-            # Calling the tool we decorated with @mcp.tool()
-            response = await session.call_tool("analyze_and_fetch", arguments={"query": query.text})
-            return {"answer": response.content[0].text}
+    try:
+        async with stdio_client(server_params) as (read, write):
+            async with ClientSession(read, write) as session:
+                await session.initialize()
+                
+                # Use query.text from the Pydantic model
+                response = await session.call_tool("analyze_and_fetch", arguments={"query": query.text})
+                
+                # 2. FIXED DATA TYPE: Force conversion to standard string to prevent JSON errors
+                answer_content = response.content[0].text
+                return {"answer": str(answer_content)}
+                
+    except Exception as e:
+        # Returns the actual error to the browser for easier debugging
+        import traceback
+        return {
+            "error": "Internal Server Error",
+            "message": str(e),
+            "traceback": traceback.format_exc(),
+            "debug_info": {
+                "server_script": SERVER_SCRIPT,
+                "executable": sys.executable,
+                "cwd": os.getcwd(),
+                "exists": os.path.exists(SERVER_SCRIPT)
+            }
+        }
