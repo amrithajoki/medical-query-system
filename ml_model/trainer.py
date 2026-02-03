@@ -6,6 +6,7 @@ Trains a TF-IDF + Logistic Regression model on labeled query data
 import json
 import pickle
 import os
+from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
@@ -15,16 +16,22 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-def load_training_data(filepath='data/training_data.json'):
+def load_training_data(filepath=None):
     """Load training data from JSON file"""
+    if filepath is None:
+        base_dir = Path(__file__).parent.parent
+        filepath = base_dir / 'data' / 'training_data.json'
+    else:
+        filepath = Path(filepath)
+
     print("=" * 70)
     print("LOADING TRAINING DATA")
     print("=" * 70)
-    print(f"\nLoading from: {filepath}")
+    print(f"\nLoading from: {filepath.absolute()}")
     
-    if not os.path.exists(filepath):
+    if not filepath.exists():
         raise FileNotFoundError(
-            f"\n❌ Training data not found at: {filepath}\n"
+            f"\n❌ Training data not found at: {filepath.absolute()}\n"
             f"Please ensure training_data.json is in the data/ folder"
         )
     
@@ -118,19 +125,25 @@ def evaluate_model(model, X_test, y_test):
     return accuracy
 
 
-def save_model(model, filepath='models/intent_classifier.pkl'):
+def save_model(model, filepath=None):
     """Save trained model to disk"""
+    if filepath is None:
+        base_dir = Path(__file__).parent.parent
+        filepath = base_dir / 'models' / 'intent_classifier.pkl'
+    else:
+        filepath = Path(filepath)
+
     print("\n" + "=" * 70)
     print("SAVING MODEL")
     print("=" * 70)
     
     # Create models directory if it doesn't exist
-    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    filepath.parent.mkdir(parents=True, exist_ok=True)
     
     with open(filepath, 'wb') as f:
         pickle.dump(model, f)
     
-    print(f"✓ Model saved to: {filepath}")
+    print(f"✓ Model saved to: {filepath.absolute()}")
 
 
 def test_model_predictions(model):
