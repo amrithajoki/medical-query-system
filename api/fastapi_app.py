@@ -36,8 +36,17 @@ from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import sys
 import os
+import logging
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+
+# Configure logging for Render
+logging.basicConfig(
+    stream=sys.stderr,
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger("fastapi-app")
 
 app = FastAPI()
 
@@ -52,6 +61,24 @@ class Query(BaseModel):
 @app.get("/", include_in_schema=False)
 async def docs_redirect():
     return RedirectResponse(url='/docs')
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for Render"""
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    model_path = os.path.join(base_dir, "models", "intent_classifier.pkl")
+    model_exists = os.path.exists(model_path)
+    
+    if not model_exists:
+        logger.error(f"Health check failed: Model not found at {model_path}")
+        return {
+            "status": "unhealthy",
+            "reason": "ML model file missing",
+            "model_path": model_path
+        }
+    
+    logger.info("Health check passed")
+    return {"status": "healthy", "model_found": True}
 
 @app.post("/ask")
 async def ask_orchestrator(query: Query):
